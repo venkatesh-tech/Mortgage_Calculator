@@ -1,45 +1,17 @@
 package com.calculator;
 
+import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-//		int principal = 0;
-//		float annualInterest = 0;
-//		byte years = 0;
-
-		Scanner scanner = new Scanner(System.in);
-
-		int principal = (int) readNumber("Principal", 1000, 1_000_000);
-//		while (true) {
-//			System.out.print("Principal: ");
-//			principal = scanner.nextInt();
-//			if (principal >= 1000 && principal <= 1_000_000)
-//				break;
-//			System.out.println("Enter a value between 1000 and 1000000 ");
-//		}
-
-		float annualInterest = (float) readNumber("Annual Interest Rate:", 1, 30);
-//		while (true) {
-//			System.out.print("Annual Interest Rate: ");
-//			annualInterest = scanner.nextFloat(); // Always use descriptive and meaningful names
-//			if (annualInterest >= 1 && annualInterest <= 30)
-//				break;
-//			System.out.println("Enter a value between 0 and 30");
-//		}
-
+		int principal = (int) readNumber("Principal ", 1000, 1_000_000);
+		float annualInterest = (float) readNumber("Annual Interest Rate: ", 1, 30);
 		byte years = (byte) readNumber("Period (Years): ", 1, 30);
-//		while (true) {
-//			System.out.print("Period (Years): ");
-//			years = scanner.nextByte();
-//			if (years >= 1 && years <= 30)
-//				break;
-//			System.out.println("Enter a value between 1 and 30");
-//		}
 
-		calculateMortgage(principal, annualInterest, years);
+		System.out.println(calculateMortgage(principal, annualInterest, years));
 
 	}
 
@@ -69,7 +41,12 @@ public class Main {
 
 		double mortgage = principal * (monthlyInterest * Math.pow(1 + monthlyInterest, numberOfPayments))
 				/ (Math.pow(1 + monthlyInterest, numberOfPayments) - 1);
-		return mortgage;
+
+		String calcMortgage = NumberFormat.getCurrencyInstance().format(mortgage);
+
+		System.out.println(calcMortgage);
+
+		return (Double) null;
 
 	}
 
